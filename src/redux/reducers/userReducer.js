@@ -91,7 +91,7 @@ const userReducer = (state = initUser, action) => {
             ...state,
             profile: profile,
             cart: cart,
-            // isLoading: false,
+            isLoading: false,
             error: null
         }
     }

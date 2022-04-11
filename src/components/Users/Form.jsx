@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { actionCreators } from "../../redux";
 import { Button } from "../../Styles/Button/Button";
 import { LoginDiv } from "../../Styles/Form/Login";
 import { RegisterDiv } from "../../Styles/Form/Register";
 
 const Form = ({ isLogin, isRegister, setIsLogin, setIsRegister }) => {
+  const error = useSelector(state=> state.userReducer.error);
   const dispatch = useDispatch();
   const [rvalues, setRvalues] = useState({
     name: "",
@@ -133,6 +134,7 @@ const Form = ({ isLogin, isRegister, setIsLogin, setIsRegister }) => {
           >
             Existing User? Login
           </Button>
+          {error && <p>{error}</p>}
         </RegisterDiv>
       ) : isLogin && (
         <LoginDiv>

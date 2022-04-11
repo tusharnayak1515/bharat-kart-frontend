@@ -77,9 +77,9 @@ const UserProfile = () => {
     }
   }, [user, dispatch, navigate]);
 
-  if (isLoading) {
-    return <LoadingSpinner />;
-  }
+  // if (isLoading) {
+  //   return <LoadingSpinner />;
+  // }
 
   return (
     <ProfileDiv>

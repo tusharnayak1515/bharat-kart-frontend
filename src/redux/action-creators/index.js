@@ -186,9 +186,9 @@ export const userLogin = ({ email, password }) => async (dispatch) => {
 }
 
 export const userProfile = () => async (dispatch) => {
-    // dispatch({
-    //     type: "setloading"
-    // });
+    dispatch({
+        type: "setloading"
+    });
     const userToken = localStorage.getItem("bharatkart-user");
     try {
         const res = await axios.get("http://localhost:5000/api/user-auth/profile", { headers: { "user-token": userToken } });
