@@ -1,0 +1,9 @@
+.productContainer {
+    min-height: 90vh;
+    width: 90%;
+    margin: auto;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 1fr 1fr 1fr;
+    background-color: white;
+}
