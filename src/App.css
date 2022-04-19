@@ -8,6 +8,11 @@ a {
   outline: none;
   text-decoration: none;
   cursor: pointer;
+  color: black;
+}
+
+a:hover {
+  color: #2874f0;
 }
 
 li {
@@ -15,7 +20,7 @@ li {
 }
 
 .App {
-  background-color: rgb(226, 226, 226);
+  background-color: rgb(239, 239, 239);
 }
 
 button {

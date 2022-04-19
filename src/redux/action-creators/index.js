@@ -52,12 +52,12 @@ export const getProductDetails = (id) => async (dispatch) => {
 
         if (res.data.success) {
             // console.log("action2",new Date().getSeconds());
-            localStorage.setItem("myproduct", JSON.stringify(res.data.product));
+            localStorage.setItem("myproduct", JSON.stringify(res.data.myProduct));
             localStorage.setItem("mymerchant", res.data.merchantName);
             dispatch({
                 type: "get-product",
                 payload: {
-                    myproduct: res.data.product,
+                    myproduct: res.data.myProduct,
                     mymerchant: res.data.merchantName,
                     quantity: res.data.productQuantity,
                     error: null
@@ -195,7 +195,7 @@ export const userProfile = () => async (dispatch) => {
 
         if (res.data.success) {
             localStorage.setItem("bharatkart-user-profile", JSON.stringify(res.data.myprofile));
-            localStorage.setItem("bharatkart-user-profile-cart", JSON.stringify(res.data.cart));
+            localStorage.setItem("bharatkart-user-cart", JSON.stringify(res.data.cart));
             localStorage.removeItem("myerror");
             return dispatch({
                 type: 'user-profile',
@@ -406,19 +406,19 @@ export const addReview = (id,rating,review)=> async (dispatch) => {
     });
     try {
         const userToken = localStorage.getItem("bharatkart-user");
-        const res = await axios.put(`http://localhost:5000/api/products/addreview/${id}`,{
+        const res = await axios.put(`http://localhost:5000/api/reviews/addreview/${id}`,{
             rating: rating,
             review: review
         }, { headers: { "user-token": userToken } })
 
         if(res.data.success) {
             localStorage.setItem("bharatkart-user-profile",JSON.stringify(res.data.myprofile));
-            localStorage.setItem("myproduct",JSON.stringify(res.data.product));
+            localStorage.setItem("myproduct",JSON.stringify(res.data.myProduct));
             dispatch({
                 type: "add-review",
                 payload: {
                     profile: res.data.myprofile,
-                    myproduct: res.data.product,
+                    myproduct: res.data.myProduct,
                     error: null
                 }
             });
@@ -444,10 +444,102 @@ export const addReview = (id,rating,review)=> async (dispatch) => {
     }
 }
 
+export const editReview = (id,rating,review)=> async (dispatch) => {
+    dispatch({
+        type: "setloading"
+    });
+    try {
+        const userToken = localStorage.getItem("bharatkart-user");
+        const res = await axios.put(`http://localhost:5000/api/reviews/editreview/${id}`,{
+            rating: rating,
+            review: review
+        }, { headers: { "user-token": userToken } })
+
+        if(res.data.success) {
+            localStorage.setItem("bharatkart-user-profile",JSON.stringify(res.data.myprofile));
+            localStorage.setItem("myproduct",JSON.stringify(res.data.myProduct));
+            dispatch({
+                type: "edit-review",
+                payload: {
+                    profile: res.data.myprofile,
+                    myproduct: res.data.myProduct,
+                    error: null
+                }
+            });
+        }
+
+        if(res.data.error) {
+            localStorage.setItem("myerror",res.data.error);
+            dispatch({
+                type: "edit-review",
+                payload: {
+                    error: res.data.error
+                }
+            });
+        }
+    }
+    catch(error) {
+        dispatch({
+            type: "edit-review",
+            payload: {
+                error: error.message
+            }
+        });
+    }
+}
+
+export const deleteReview = (id)=> async (dispatch) => {
+    dispatch({
+        type: "setloading"
+    });
+    try {
+        const userToken = localStorage.getItem("bharatkart-user");
+        const res = await axios.delete(`http://localhost:5000/api/reviews/deletereview/${id}`, { headers: { "user-token": userToken } })
+
+        if(res.data.success) {
+            localStorage.setItem("bharatkart-user-profile",JSON.stringify(res.data.myprofile));
+            localStorage.setItem("myproduct",JSON.stringify(res.data.myProduct));
+            dispatch({
+                type: "edit-review",
+                payload: {
+                    profile: res.data.myprofile,
+                    myproduct: res.data.myProduct,
+                    error: null
+                }
+            });
+        }
+
+        if(res.data.error) {
+            localStorage.setItem("myerror",res.data.error);
+            dispatch({
+                type: "edit-review",
+                payload: {
+                    error: res.data.error
+                }
+            });
+        }
+    }
+    catch(error) {
+        dispatch({
+            type: "edit-review",
+            payload: {
+                error: error.message
+            }
+        });
+    }
+}
+
 export const userLogout = () => async (dispatch) => {
     return dispatch({
         type: "user-logout"
-    })
+    });
+}
+
+export const resetError = () => async (dispatch) => {
+    localStorage.removeItem("myerror");
+    return dispatch({
+        type: "reset-error"
+    });
 }
 
 
@@ -467,13 +559,13 @@ export const merchantRegister = ({ name, email, phone, password, aadhaar, pincod
 
         if (res.data.success) {
             localStorage.setItem("bharatkart-merchant", res.data.merchantToken);
-            localStorage.setItem("bharatkart-merchant-profile", JSON.stringify(res.data.merchant));
+            localStorage.setItem("bharatkart-merchant-profile", JSON.stringify(res.data.myprofile));
             localStorage.removeItem("myerror");
             return dispatch({
                 type: 'merchant-register',
                 payload: {
                     merchant: res.data.merchantToken,
-                    profile: res.data.merchant,
+                    profile: res.data.myprofile,
                     error: null
                 }
             });
@@ -508,13 +600,13 @@ export const merchantLogin = ({ email, password }) => async (dispatch) => {
 
         if (res.data.success) {
             localStorage.setItem("bharatkart-merchant", res.data.merchantToken);
-            localStorage.setItem("bharatkart-merchant-profile", JSON.stringify(res.data.merchant));
+            localStorage.setItem("bharatkart-merchant-profile", JSON.stringify(res.data.myprofile));
             localStorage.removeItem("myerror");
             return dispatch({
                 type: 'merchant-login',
                 payload: {
                     merchant: res.data.merchantToken,
-                    profile: res.data.merchant,
+                    profile: res.data.myprofile,
                     error: null
                 }
             });
@@ -541,17 +633,20 @@ export const merchantLogin = ({ email, password }) => async (dispatch) => {
 }
 
 export const merchantProfile = () => async (dispatch) => {
+    dispatch({
+        type: "setloading"
+    });
     const merchantToken = localStorage.getItem("bharatkart-merchant");
     try {
         const res = await axios.post("http://localhost:5000/api/merchant-auth/profile", {}, { headers: { "merchant-token": merchantToken } });
 
         if (res.data.success) {
-            localStorage.setItem("bharatkart-merchant-profile", JSON.stringify(res.data.merchant));
+            localStorage.setItem("bharatkart-merchant-profile", JSON.stringify(res.data.myprofile));
             localStorage.removeItem("myerror");
-            return dispatch({
+            dispatch({
                 type: 'merchant-profile',
                 payload: {
-                    profile: res.data.merchant,
+                    profile: res.data.myprofile,
                     error: null
                 }
             });
@@ -559,7 +654,7 @@ export const merchantProfile = () => async (dispatch) => {
 
         if (res.data.error) {
             localStorage.setItem("myerror", res.data.error);
-            return dispatch({
+            dispatch({
                 type: 'merchant-profile',
                 payload: {
                     error: res.data.error
@@ -568,7 +663,7 @@ export const merchantProfile = () => async (dispatch) => {
         }
     }
     catch (error) {
-        return dispatch({
+        dispatch({
             type: 'merchant-profile',
             payload: {
                 error: error.message
@@ -577,23 +672,33 @@ export const merchantProfile = () => async (dispatch) => {
     }
 }
 
-export const addProducts = ({ name, description, image, price }) => async (dispatch) => {
+export const addProducts = ({ name, main, sub, gender, brand, description, image, price, quantity }) => async (dispatch) => {
+    dispatch({
+        type: "setloading"
+    });
     const merchantToken = localStorage.getItem("bharatkart-merchant");
     try {
         const res = await axios.post("http://localhost:5000/api/products/addproduct", {
             name: name,
+            main: main,
+            sub: sub,
+            gender: gender,
+            brand: brand,
             description: description,
             image: image,
-            price: price
+            price: price,
+            quantity: quantity
         }, { headers: { "merchant-token": merchantToken } });
 
         if (res.data.success) {
-            localStorage.setItem("bharatkart-merchant-profile", JSON.stringify(res.data.merchant));
+            localStorage.setItem("bharatkart-merchant-profile", JSON.stringify(res.data.myprofile));
+            localStorage.setItem("products", JSON.stringify(res.data.allproducts));
             localStorage.removeItem("myerror");
-            return dispatch({
+            dispatch({
                 type: 'addproduct',
                 payload: {
-                    products: res.data.products,
+                    products: res.data.allproducts,
+                    profile: res.data.myprofile,
                     error: null
                 }
             });
@@ -601,7 +706,7 @@ export const addProducts = ({ name, description, image, price }) => async (dispa
 
         if (res.data.error) {
             localStorage.setItem("myerror", res.data.error);
-            return dispatch({
+            dispatch({
                 type: 'addproduct',
                 payload: {
                     error: res.data.error
@@ -610,7 +715,7 @@ export const addProducts = ({ name, description, image, price }) => async (dispa
         }
     }
     catch (error) {
-        return dispatch({
+        dispatch({
             type: 'addproduct',
             payload: {
                 error: error.message
@@ -620,18 +725,22 @@ export const addProducts = ({ name, description, image, price }) => async (dispa
 }
 
 export const deleteProduct = (id) => async (dispatch) => {
+    dispatch({
+        type: "setloading"
+    });
     const merchantToken = localStorage.getItem("bharatkart-merchant");
     try {
         const res = await axios.delete(`http://localhost:5000/api/products/deleteproduct/${id}`, { headers: { "merchant-token": merchantToken } });
 
         if (res.data.success) {
-            localStorage.setItem("bharatkart-merchant-profile", JSON.stringify(res.data.myMerchant));
+            localStorage.setItem("bharatkart-merchant-profile", JSON.stringify(res.data.myprofile));
             localStorage.setItem("products", JSON.stringify(res.data.filteredProducts));
             localStorage.removeItem("myerror");
-            return dispatch({
+            dispatch({
                 type: 'deleteproduct',
                 payload: {
                     products: res.data.filteredProducts,
+                    profile: res.data.myprofile,
                     error: null
                 }
             });
@@ -639,7 +748,7 @@ export const deleteProduct = (id) => async (dispatch) => {
 
         if (res.data.error) {
             localStorage.setItem("myerror", res.data.error);
-            return dispatch({
+            dispatch({
                 type: 'deleteproduct',
                 payload: {
                     error: res.data.error
@@ -648,7 +757,7 @@ export const deleteProduct = (id) => async (dispatch) => {
         }
     }
     catch (error) {
-        return dispatch({
+        dispatch({
             type: 'deleteproduct',
             payload: {
                 error: error.message

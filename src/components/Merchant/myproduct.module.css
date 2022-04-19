@@ -1,12 +1,37 @@
 .product {
+    position: relative;
     height: 40vh;
     width: 20vw;
-    /* margin: 5vh; */
+    margin: 5vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     border: 0.1rem solid black;
     cursor: pointer;
+}
+
+.edit {
+    position: absolute;
+    top: 2%;
+    left: 3%;
+    font-size: 1.5rem;
+    z-index: 50;
+}
+
+.edit:hover {
+    color: green;
+}
+
+.delete {
+    position: absolute;
+    top: 2%;
+    right: 3%;
+    font-size: 1.3rem;
+    z-index: 50;
+}
+
+.delete:hover {
+    color: red;
 }
 
 .product:hover {

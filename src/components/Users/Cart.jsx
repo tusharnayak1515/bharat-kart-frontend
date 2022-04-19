@@ -38,9 +38,9 @@ import { useNavigate } from "react-router-dom";
 const Cart = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const cart = useSelector((state) => state.userReducer.cart, shallowEqual);
-  const user = useSelector((state) => state.userReducer.profile, shallowEqual);
-  const isLoading = useSelector(state => state.userReducer.isLoading,shallowEqual);
+  const cart = useSelector(state => state.userReducer.cart, shallowEqual);
+  const profile = useSelector(state => state.userReducer.profile, shallowEqual);
+  const isLoading = useSelector(state => state.userReducer.isLoading, shallowEqual);
 
   const addToCart = (id) => {
     dispatch(actionCreators.addToCart(1, id));
@@ -66,7 +66,10 @@ const Cart = () => {
 
   useEffect(() => {
     dispatch(actionCreators.userProfile());
-  }, [cart, dispatch]);
+    return ()=> {
+      dispatch(actionCreators.resetError())
+    }
+  }, [dispatch]);
 
   if (isLoading) {
     return <LoadingSpinner />;
@@ -84,8 +87,8 @@ const Cart = () => {
               style={{ marginRight: "0.5rem" }}
             />
             <h3>
-              Deliver to {user.profile.location.address},
-              {user.profile.location.pincode}
+              Deliver to {profile.profile.location.address},
+              {profile.profile.location.pincode}
             </h3>
           </DeliverDiv>
         </CartHeader>
@@ -93,9 +96,9 @@ const Cart = () => {
           <EmptyCart>Your cart is empty!</EmptyCart>
         ) : (
           cart.map((c) => {
-            for (let i = 0; i < user.profile.cart.length; i++) {
-              if (user.profile.cart[i].product === c._id) {
-                productQty = user.profile.cart[i].quantity;
+            for (let i = 0; i < profile.profile.cart.length; i++) {
+              if (profile.profile.cart[i].product === c._id) {
+                productQty = profile.profile.cart[i].quantity;
                 totalItems += productQty;
                 totalCost += c.price * productQty;
               }
@@ -153,7 +156,7 @@ const Cart = () => {
               color="white"
               padding="1rem 3rem"
               br="0.3rem"
-              onClick={() => buyProduct(user.profile.cart)}
+              onClick={() => buyProduct(profile.profile.cart)}
             >
               <h5>PLACE ORDER</h5>
             </Button>

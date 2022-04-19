@@ -1,9 +1,11 @@
 .productContainer {
-    min-height: 90vh;
-    width: 90%;
+    min-height: 80vh;
+    width: 99.5%;
     margin: auto;
     display: grid;
     justify-content: center;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    border: none;
+    border-radius: 0.2rem;
     background-color: white;
 }

@@ -28,6 +28,7 @@ else {
 const initMerchant = {
     merchant: isMerchant,
     profile: isProfile,
+    isLoading: false,
     error: isError
 }
 
@@ -61,6 +62,65 @@ const merchantReducer = (state=initMerchant,action)=> {
             ...state,
             merchant: merchant,
             profile: profile,
+            error: null
+        }
+    }
+
+    else if(action.type === "merchant-profile") {
+        const {profile,error} = action.payload;
+        if(error) {
+            return {
+                ...state,
+                error: error,
+                isLoading: false,
+            }
+        }
+        return {
+            ...state,
+            profile: profile,
+            isLoading: false,
+            error: null
+        }
+    }
+
+    else if(action.type === "setloading") {
+        // console.log("setloading",state.isLoading, new Date().getSeconds());
+        return {
+            ...state,
+            isLoading: true
+        }
+    }
+
+    else if(action.type === "addproduct") {
+        const {profile,error} = action.payload;
+        if(error) {
+            return {
+                ...state,
+                error: error,
+                isLoading: false,
+            }
+        }
+        return {
+            ...state,
+            profile: profile,
+            isLoading: false,
+            error: null
+        }
+    }
+
+    else if(action.type === "deleteproduct") {
+        const {profile,error} = action.payload;
+        if(error) {
+            return {
+                ...state,
+                error: error,
+                isLoading: false,
+            }
+        }
+        return {
+            ...state,
+            profile: profile,
+            isLoading: false,
             error: null
         }
     }

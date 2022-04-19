@@ -50,7 +50,8 @@ const productReducer = (state=initProducts,action)=> {
         if(error) {
             return {
                 ...state,
-                error: error
+                isLoading: false,
+                error: error,
             }
         }
         return {
@@ -62,19 +63,18 @@ const productReducer = (state=initProducts,action)=> {
     }
 
     else if(action.type === "addproduct") {
-        const {product, error} = action.payload;
+        const {products, error} = action.payload;
         if(error) {
             return {
                 ...state,
-                error: error
+                error: error,
+                isLoading: false
             }
         }
         return {
             ...state,
-            products: [
-                ...state.products,
-                product
-            ],
+            products: products,
+            isLoading: false,
             error: null
         }
     }
@@ -92,7 +92,8 @@ const productReducer = (state=initProducts,action)=> {
         if(error) {
             return {
                 ...state,
-                error: error
+                error: error,
+                isLoading: false,
             }
         }
         // window.location.reload(false);
@@ -112,6 +113,7 @@ const productReducer = (state=initProducts,action)=> {
             ...state,
             product: [],
             mymerchant: null,
+            isLoading: false,
             error: null
         }
     }
@@ -121,7 +123,8 @@ const productReducer = (state=initProducts,action)=> {
         if (error) {
             return {
                 ...state,
-                error: error
+                error: error,
+                isLoading: false
             }
         }
         return {
@@ -129,6 +132,31 @@ const productReducer = (state=initProducts,action)=> {
             product: myproduct,
             isLoading: false,
             error: null
+        }
+    }
+
+    else if (action.type === "edit-review") {
+        const { myproduct, error } = action.payload;
+        if (error) {
+            return {
+                ...state,
+                error: error,
+                isLoading: false
+            }
+        }
+        return {
+            ...state,
+            product: myproduct,
+            isLoading: false,
+            error: null
+        }
+    }
+
+    else if(action.type === "reset-error") {
+        return {
+            ...state,
+            error: null,
+            isLoading: false
         }
     }
 

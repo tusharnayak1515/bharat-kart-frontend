@@ -3,7 +3,7 @@ import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { StarDiv, StarHead } from "./Star";
 
-const StarRating = ({rating,hover,setRating,setHover}) => {
+const StarRating = ({edit, isEdit, rating, hover, setRating, setHover, setEdit }) => {
   return (
     <StarDiv>
       <StarHead>Rate this product</StarHead>
@@ -15,7 +15,14 @@ const StarRating = ({rating,hover,setRating,setHover}) => {
               type="button"
               key={index}
               className={index <= (hover || rating) ? "on" : "off"}
-              onClick={() => setRating(index)}
+              onClick={() => {
+                if (isEdit) {
+                  setEdit({ ...edit, ratings: index });
+                }
+                else {
+                  setRating(index);
+                }
+              }}
               onMouseEnter={() => setHover(index)}
               onMouseLeave={() => setHover(rating)}
             >

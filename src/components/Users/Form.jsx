@@ -85,7 +85,7 @@ const Form = ({ isLogin, isRegister, setIsLogin, setIsRegister }) => {
             style={inputStyles}
           />
           <input
-            type="text"
+            type="password"
             name="password"
             value={rvalues.password}
             onChange={onRchangeHandler}
@@ -147,7 +147,7 @@ const Form = ({ isLogin, isRegister, setIsLogin, setIsRegister }) => {
             style={inputStyles}
           />
           <input
-            type="text"
+            type="password"
             name="password"
             value={lvalues.password}
             onChange={onLchangeHandler}

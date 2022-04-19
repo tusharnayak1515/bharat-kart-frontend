@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const ProductPageDiv = styled.div`
     min-height: 90vh;
-    width: 90%;
+    width: 93%;
     margin: auto;
     padding: 2rem;
     display: grid;
@@ -11,7 +11,7 @@ export const ProductPageDiv = styled.div`
 `;
 
 export const LeftDiv = styled.div`
-    min-height: 70%;
+    height: 40rem;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -38,17 +38,17 @@ export const RightDiv = styled.div`
     padding: 0rem 1.5rem;
     display: flex;
     flex-direction: column;
-    /* align-items: center; */
     /* background-color: green; */
 `;
 
 export const ProductName = styled.h2`
     font-size: 1.4rem;
+    margin-bottom: 0.3rem;
     font-weight: normal;
 `;
 
 export const ProductPrice = styled.h1`
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
 `;
 
 export const RatingsDiv = styled.div`
@@ -71,12 +71,28 @@ export const ProductDetailsDiv = styled.div`
     margin: 1rem 0;
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
+    /* background-color: red; */
+`;
+
+export const FlexDiv = styled.div`
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
     /* background-color: red; */
 `;
 
 export const ProductDetails = styled.p`
     font-size: 1.1rem;
-    margin-left: 0.5rem;
+`;
+
+export const BrandName = styled.h3`
+    /* font-size: 1.1rem; */
+    font-weight: normal;
+    margin-left: 0.3rem;
+    /* font-family: 'Anek Tamil', sans-serif; */
+    font-family: 'Inconsolata', monospace;
+    color: rgb(95, 94, 94);
 `;
 
 export const ProductQuantity = styled.h2`
@@ -159,4 +175,15 @@ export const ReviewForm = styled.textarea`
     border-radius: 0.2rem;
     outline: none;
     resize: none;
+`;
+
+export const ErrorDiv = styled.div`
+    margin: 2rem 0;
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+`;
+
+export const Error = styled.h1`
+    color: red;
 `;

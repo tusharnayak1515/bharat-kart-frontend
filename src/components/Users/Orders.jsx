@@ -16,8 +16,13 @@ const Orders = () => {
     navigate(`/product/${id}`, { replace: true })
   }
 
+  const orderedProducts = [...profile.orders].reverse();
+
   useEffect(() => {
     dispatch(actionCreators.userProfile());
+    return ()=> {
+      dispatch(actionCreators.resetError())
+    }
   }, [profile.orders.length,dispatch]);
 
   // if (isLoading) {
@@ -26,12 +31,12 @@ const Orders = () => {
 
   return (
     <OrdersDiv>
-      {profile.orders && profile.orders.length === 0 ? (
+      {orderedProducts && orderedProducts.length === 0 ? (
         <NoOrders>You have no orders to display!</NoOrders>
       ) : (
-        profile.orders.map((order) => {
+        orderedProducts.map((order) => {
           return (
-            <OrderedItems key={profile.orders.indexOf(order)} onClick={()=> onProductClick(order._id)}>
+            <OrderedItems key={orderedProducts.indexOf(order)} onClick={()=> onProductClick(order._id)}>
               <ItemImage src={order.image} alt={order.name} />
               <ProductDetails>
                 <h3>{order.name}</h3>

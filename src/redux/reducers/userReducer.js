@@ -49,7 +49,8 @@ const userReducer = (state = initUser, action) => {
         if (error) {
             return {
                 ...state,
-                error: error
+                error: error,
+                isLoading: false
             }
         }
         // window.location.reload(false);
@@ -66,7 +67,8 @@ const userReducer = (state = initUser, action) => {
         if (error) {
             return {
                 ...state,
-                error: error
+                error: error,
+                isLoading: false
             }
         }
         // window.location.reload(false);
@@ -84,7 +86,8 @@ const userReducer = (state = initUser, action) => {
         if (error) {
             return {
                 ...state,
-                error: error
+                error: error,
+                isLoading: false
             }
         }
         return {
@@ -101,13 +104,14 @@ const userReducer = (state = initUser, action) => {
         if (error) {
             return {
                 ...state,
-                error: error
+                error: error,
+                isLoading: false
             }
         }
         return {
             ...state,
             profile: profile,
-            isLoading: false,
+            // isLoading: false,
             error: null
         }
     }
@@ -125,7 +129,8 @@ const userReducer = (state = initUser, action) => {
         if (error) {
             return {
                 ...state,
-                error: error
+                error: error,
+                isLoading: false
             }
         }
         return {
@@ -142,7 +147,8 @@ const userReducer = (state = initUser, action) => {
         if (error) {
             return {
                 ...state,
-                error: error
+                error: error,
+                isLoading: false
             }
         }
         return {
@@ -159,7 +165,8 @@ const userReducer = (state = initUser, action) => {
         if (error) {
             return {
                 ...state,
-                error: error
+                error: error,
+                isLoading: false
             }
         }
         return {
@@ -176,7 +183,25 @@ const userReducer = (state = initUser, action) => {
         if (error) {
             return {
                 ...state,
-                error: error
+                error: error,
+                isLoading: false
+            }
+        }
+        return {
+            ...state,
+            profile: profile,
+            isLoading: false,
+            error: null
+        }
+    }
+
+    else if (action.type === "edit-review") {
+        const { profile, error } = action.payload;
+        if (error) {
+            return {
+                ...state,
+                error: error,
+                isLoading: false
             }
         }
         return {
@@ -198,6 +223,14 @@ const userReducer = (state = initUser, action) => {
             profile: [],
             cart: [],
             error: null
+        }
+    }
+
+    else if(action.type === "reset-error") {
+        return {
+            ...state,
+            error: null,
+            isLoading: false,
         }
     }
 

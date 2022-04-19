@@ -20,7 +20,7 @@ const Product = ({ product }) => {
     <Link to={`/product/${product._id}`} style={{margin: "5vh", color: "black"}}>
       <div className={styles.product}>
         <img src={product.image} alt={product.name} />
-        <h2>{product.name}</h2>
+        <h2>{product.name.length > 23 ? `${product.name.substring(0,23)}...` : product.name}</h2>
         <h3>Rs. {product.price}</h3>
       </div>
     </Link>

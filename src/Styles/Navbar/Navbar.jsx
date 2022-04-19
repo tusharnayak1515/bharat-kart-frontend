@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const NavbarContainer = styled.div`
-    min-height: 10vh;
+    min-height: 8vh;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
