@@ -22,7 +22,7 @@ import {
   SubHeader,
   SubmitButton,
 } from "../../Styles/Merchant/AddProduct";
-import { electronics, fashion } from "../Products/sub-categories";
+import { bags, electronics, fashion, footwear, grocery, health, homeandfurniture, kitchen, sports, tvandappliances } from "../Products/sub-categories";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faTrash } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
@@ -51,17 +51,17 @@ const AddProduct = () => {
 
   const gender = ["M", "F", "Unisex"];
 
-  const [name, setName] = useState(location.state.product.name ? location.state.product.name : "");
+  const [name, setName] = useState(location.state ? location.state.product.name : "");
   const [subcategories, setSubCategories] = useState([]);
-  const [main, setMain] = useState(location.state.product.category.main ? location.state.product.category.main : "Main Category");
-  const [sub, setSub] = useState(location.state.product.category.sub ? location.state.product.category.sub : "Sub Category");
-  const [mygender, setMyGender] = useState(location.state.product.category.gender ? location.state.product.category.gender : "M");
-  const [brand, setBrand] = useState(location.state.product.brand ? location.state.product.brand : "");
-  const [description, setDescription] = useState(location.state.product.description ? location.state.product.description : "");
-  const [image, setImage] = useState(location.state.product.image ? location.state.product.image : "");
-  const [pic, setPic] = useState(location.state.product.image ? location.state.product.image : "");
-  const [price, setPrice] = useState(location.state.product.price ? location.state.product.price : "");
-  const [quantity, setQuantity] = useState(location.state.myQuantity ? location.state.myQuantity : "");
+  const [main, setMain] = useState(location.state ? location.state.product.category.main : "Main Category");
+  const [sub, setSub] = useState(location.state ? location.state.product.category.sub : "Sub Category");
+  const [mygender, setMyGender] = useState(location.state ? location.state.product.category.gender : "M");
+  const [brand, setBrand] = useState(location.state ? location.state.product.brand : "");
+  const [description, setDescription] = useState(location.state ? location.state.product.description : "");
+  const [image, setImage] = useState(location.state ? location.state.product.image : "");
+  const [pic, setPic] = useState(location.state ? location.state.product.image : "");
+  const [price, setPrice] = useState(location.state ? location.state.product.price : "");
+  const [quantity, setQuantity] = useState(location.state ? location.state.myQuantity : "");
 
   const onMainChange = (e) => {
     setMain(e.target.value);
@@ -139,21 +139,21 @@ const AddProduct = () => {
     } else if (main === "Electronics") {
       setSubCategories(electronics);
     } else if (main === "TV & Appliances") {
-      setSubCategories(electronics);
+      setSubCategories(tvandappliances);
     } else if (main === "Sports") {
-      setSubCategories(electronics);
+      setSubCategories(sports);
     } else if (main === "Grocery") {
-      setSubCategories(electronics);
+      setSubCategories(grocery);
     } else if (main === "Health Products") {
-      setSubCategories(electronics);
+      setSubCategories(health);
     } else if (main === "Home & Furniture") {
-      setSubCategories(electronics);
+      setSubCategories(homeandfurniture);
     } else if (main === "Footwear") {
-      setSubCategories(electronics);
+      setSubCategories(footwear);
     } else if (main === "Bags") {
-      setSubCategories(electronics);
+      setSubCategories(bags);
     } else if (main === "Kitchen Appliances") {
-      setSubCategories(electronics);
+      setSubCategories(kitchen);
     } else {
       setSubCategories([]);
     }

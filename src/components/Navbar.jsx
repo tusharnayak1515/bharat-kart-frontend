@@ -136,7 +136,7 @@ const Navbar = () => {
                     transform={user ? `translateX(-25%)` : merchant && `translateX(-37%)`}
                     onMouseLeave={() => setIsClicked(false)}
                   >
-                    <Link to="/user-profile" style={menuLinkStyle}>
+                    <Link to={user ? '/user-profile' : merchant && 'merchant-profile'} style={menuLinkStyle}>
                       My Profile
                     </Link>
                     {user && (

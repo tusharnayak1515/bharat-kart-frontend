@@ -13,6 +13,7 @@ import Dashboard from './components/Merchant/Dashboard';
 import Register from './components/Merchant/Register';
 import Login from './components/Merchant/Login';
 import AddProduct from './components/Merchant/AddProduct';
+import Profile from './components/Merchant/Profile';
 
 import './App.css';
 
@@ -34,6 +35,7 @@ function App() {
         <Route exact path='/merchant-register' element={<Register />} />
         <Route exact path='/merchant-login' element={<Login />} />
         {merchant && <Route exact path='/merchant-dashboard' element={<Dashboard />} />}
+        {merchant && <Route exact path='/merchant-profile' element={<Profile />} />}
         {merchant && <Route exact path='/add-product' element={<AddProduct />} />}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>

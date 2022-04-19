@@ -83,6 +83,23 @@ const merchantReducer = (state=initMerchant,action)=> {
         }
     }
 
+    else if(action.type === "edit-merchant") {
+        const {profile,error} = action.payload;
+        if(error) {
+            return {
+                ...state,
+                error: error,
+                // isLoading: false,
+            }
+        }
+        return {
+            ...state,
+            profile: profile,
+            // isLoading: false,
+            error: null
+        }
+    }
+
     else if(action.type === "setloading") {
         // console.log("setloading",state.isLoading, new Date().getSeconds());
         return {

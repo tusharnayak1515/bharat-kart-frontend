@@ -672,6 +672,49 @@ export const merchantProfile = () => async (dispatch) => {
     }
 }
 
+export const editMerchant = ({ name, email, phone, pincode, address }) => async (dispatch) => {
+    const merchantToken = localStorage.getItem("bharatkart-merchant");
+    try {
+        const res = await axios.put("http://localhost:5000/api/merchant-auth/editProfile", {
+            name: name,
+            email: email,
+            phone: phone,
+            pincode: pincode,
+            address: address
+        }, { headers: { "merchant-token": merchantToken } });
+
+        if (res.data.success) {
+            localStorage.setItem("bharatkart-merchant-profile", JSON.stringify(res.data.myprofile));
+            localStorage.removeItem("myerror");
+            return dispatch({
+                type: 'edit-merchant',
+                payload: {
+                    profile: res.data.myprofile,
+                    error: null
+                }
+            });
+        }
+
+        if (res.data.error) {
+            localStorage.setItem("myerror", res.data.error);
+            return dispatch({
+                type: 'edit-merchant',
+                payload: {
+                    error: res.data.error
+                }
+            })
+        }
+    }
+    catch (error) {
+        return dispatch({
+            type: 'edit-merchant',
+            payload: {
+                error: error.message
+            }
+        })
+    }
+}
+
 export const addProducts = ({ name, main, sub, gender, brand, description, image, price, quantity }) => async (dispatch) => {
     dispatch({
         type: "setloading"

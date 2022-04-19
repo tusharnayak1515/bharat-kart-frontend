@@ -9,7 +9,7 @@ import Product from "./Product";
 import SubCategories from "./SubCategories";
 
 import styles from "./products.module.css";
-import { fashion } from "./sub-categories";
+import { bags, electronics, fashion, footwear, grocery, health, homeandfurniture, kitchen, sports, tvandappliances } from "./sub-categories";
 import { SubCategoryDiv } from "../../Styles/Products/SubCategories";
 
 const SubCategorizedProducts = () => {
@@ -38,6 +38,33 @@ const SubCategorizedProducts = () => {
 
   if (category === "Fashion") {
     subCategories = fashion;
+  }
+  else if(category === "Electronics") {
+    subCategories = electronics;
+  }
+  else if(category === "TV & Appliances") {
+    subCategories = tvandappliances;
+  }
+  else if(category === "Sports") {
+    subCategories = sports;
+  }
+  else if(category === "Grocery") {
+    subCategories = grocery;
+  }
+  else if(category === "Health Products") {
+    subCategories = health;
+  }
+  else if(category === "Home & Furniture") {
+    subCategories = homeandfurniture;
+  }
+  else if(category === "Footwear") {
+    subCategories = footwear;
+  }
+  else if(category === "Bags") {
+    subCategories = bags;
+  }
+  else if(category === "Kitchen Appliances") {
+    subCategories = kitchen;
   }
 
   if (isLoading) {

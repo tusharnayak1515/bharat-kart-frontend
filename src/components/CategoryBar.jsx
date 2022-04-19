@@ -25,24 +25,6 @@ const CategoryBar = () => {
           </Link>
         );
       })}
-      {/* <Link to="/products/category/T-Shirts">
-        <Category>T-Shirts</Category>
-      </Link>
-      <Link to="/products/category/Casual Shirts">
-        <Category>Casual Shirts</Category>
-      </Link>
-      <Link to="/products/category/Formal Shirts">
-        <Category>Formal Shirts</Category>
-      </Link>
-      <Link to="/products/category/Denim Jeans">
-        <Category>Denim Jeans</Category>
-      </Link>
-      <Link to="/products/category/Formal Trousers">
-        <Category>Formal Trousers</Category>
-      </Link>
-      <Link to="/products/category/Inner Wears">
-        <Category>Inner Wears</Category>
-      </Link> */}
     </CategoryDiv>
   );
 };

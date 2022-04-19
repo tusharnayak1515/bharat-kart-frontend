@@ -59,3 +59,179 @@ export const electronics = [
         sub: "PC Essesntials"
     }
 ];
+
+export const tvandappliances = [
+    {
+        image: "",
+        sub: "Telivisions"
+    },
+    {
+        image: "",
+        sub: "Washing Machines"
+    },
+    {
+        image: "",
+        sub: "Air Conditioners"
+    },
+    {
+        image: "",
+        sub: "Refrigerators"
+    }
+];
+
+export const sports = [
+    {
+        image: "",
+        sub: "Spikes"
+    },
+    {
+        image: "",
+        sub: "Tracksuits"
+    },
+    {
+        image: "",
+        sub: "Shorts"
+    }
+];
+
+export const grocery = [
+    {
+        image: "",
+        sub: "Beverages"
+    },
+    {
+        image: "",
+        sub: "Dairy"
+    },
+    {
+        image: "",
+        sub: "Dry Goods"
+    },
+    {
+        image: "",
+        sub: "Produce"
+    },
+    {
+        image: "",
+        sub: "Meat"
+    },
+    {
+        image: "",
+        sub: "Frozen Foods"
+    },
+    {
+        image: "",
+        sub: "Cleaners"
+    },
+    {
+        image: "",
+        sub: "Personal Care"
+    },
+];
+
+export const health = [
+    {
+        image: "",
+        sub: "Medicines"
+    },
+    {
+        image: "",
+        sub: "Energy Drinks"
+    },
+    {
+        image: "",
+        sub: "Oats"
+    }
+];
+
+export const homeandfurniture = [
+    {
+        image: "",
+        sub: "Sofa"
+    },
+    {
+        image: "",
+        sub: "Bed"
+    },
+    {
+        image: "",
+        sub: "Chair"
+    },
+    {
+        image: "",
+        sub: "Table"
+    },
+    {
+        image: "",
+        sub: "Broom"
+    },
+    {
+        image: "",
+        sub: "Wiper"
+    }
+];
+
+export const footwear = [
+    {
+        image: "",
+        sub: "Sneakers"
+    },
+    {
+        image: "",
+        sub: "Formal Shoes"
+    },
+    {
+        image: "",
+        sub: "Sandals"
+    },
+    {
+        image: "",
+        sub: "Slippers"
+    },
+    {
+        image: "",
+        sub: "Socks"
+    }
+];
+
+export const bags = [
+    {
+        image: "",
+        sub: "Travel Bags"
+    },
+    {
+        image: "",
+        sub: "Trolley Bags"
+    },
+    {
+        image: "",
+        sub: "Laptop Bags"
+    },
+    {
+        image: "",
+        sub: "Air Bags"
+    },
+    {
+        image: "",
+        sub: "Hand Bags"
+    }
+];
+
+export const kitchen = [
+    {
+        image: "",
+        sub: "Utensils"
+    },
+    {
+        image: "",
+        sub: "Mixer Grinder"
+    },
+    {
+        image: "",
+        sub: "Pressure Cooker"
+    },
+    {
+        image: "",
+        sub: "Dish Washer"
+    }
+];
